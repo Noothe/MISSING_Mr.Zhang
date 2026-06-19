@@ -79,6 +79,16 @@ python app\server.py
 
 生产环境应把 `SCHOOL_SOURCE_URL` 指向已授权的 JSON 数据源。支持两种格式。
 
+在 Vercel 中配置：
+
+```text
+Name: SCHOOL_SOURCE_URL
+Value: 一个可公开访问或服务端可访问的 JSON 文件 URL
+Environment: Production / Preview / Development
+```
+
+保存后需要 Redeploy。配置成功后，`/api/schools` 会优先读取该 URL；如果远程数据源不可用，才回退到本地演示数据 `local-seed-demo`。
+
 数组格式：
 
 ```json
@@ -115,6 +125,8 @@ Invoke-RestMethod http://127.0.0.1:8787/api/sync/schools -Method Post
 ```
 
 如果配置了 `SYNC_TOKEN`，请求需要携带 `X-Sync-Token`。
+
+开发测试可以先用 GitHub Raw JSON URL；正式上线应替换为已授权数据源或官方公开数据源。不要把夸克高考、掌上高考等商业网站页面 URL 直接填进去，页面 HTML 不是本接口需要的 JSON 数据，也可能违反对方服务条款。
 
 ## 项目结构
 

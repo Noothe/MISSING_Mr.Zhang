@@ -69,6 +69,12 @@ def read_json_body(handler: BaseHTTPRequestHandler) -> dict[str, Any]:
 
 
 def load_school_payload() -> dict[str, Any]:
+    if SCHOOL_SOURCE_URL:
+        try:
+            return fetch_authorized_school_source()
+        except Exception:
+            pass
+
     source_path = CACHE_DATA if CACHE_DATA.exists() else SEED_DATA
     payload = json.loads(read_text(source_path, '{"schools": []}'))
     if not isinstance(payload, dict):

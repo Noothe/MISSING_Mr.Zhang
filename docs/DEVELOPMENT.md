@@ -55,6 +55,16 @@ Install Command: 留空
 
 `POST /api/sync/schools` 只接受 `SCHOOL_SOURCE_URL` 指向的授权 JSON 数据源。支持两种格式：
 
+Vercel 环境变量配置：
+
+```text
+Name: SCHOOL_SOURCE_URL
+Value: 一个可公开访问或服务端可访问的 JSON 文件 URL
+Environment: Production / Preview / Development
+```
+
+保存后 Redeploy。运行时 `/api/schools` 会优先读取该 URL；失败时回退到本地 seed。
+
 ```json
 [
   { "name": "郑州大学", "province": "河南" }
