@@ -68,6 +68,14 @@ def read_json_body(handler: BaseHTTPRequestHandler) -> dict[str, Any]:
     return payload
 
 
+def simplify_region_name(value: Any) -> str:
+    text = str(value or "").strip()
+    for suffix in ("省", "市", "壮族自治区", "回族自治区", "维吾尔自治区", "自治区"):
+        if text.endswith(suffix):
+            return text[: -len(suffix)]
+    return text
+
+
 def load_school_payload() -> dict[str, Any]:
     if SCHOOL_SOURCE_URL:
         try:
@@ -86,6 +94,58 @@ def load_school_payload() -> dict[str, Any]:
 
 
 def normalize_school_payload(payload: Any, source_url: str) -> dict[str, Any]:
+    if (
+        isinstance(payload, dict)
+        and isinstance(payload.get("province"), list)
+        and isinstance(payload.get("city"), list)
+        and isinstance(payload.get("university"), list)
+    ):
+        province_by_id = {
+            str(item.get("id")): str(item.get("name") or "").strip()
+            for item in payload["province"]
+            if isinstance(item, dict)
+        }
+        city_by_id = {
+            str(item.get("id")): item
+            for item in payload["city"]
+            if isinstance(item, dict)
+        }
+        normalized = []
+        for item in payload["university"]:
+            if not isinstance(item, dict):
+                continue
+            city = city_by_id.get(str(item.get("cid")), {})
+            province = province_by_id.get(str(city.get("pid")), "")
+            name = str(item.get("name") or "").strip()
+            if not name or not province:
+                continue
+            level = str(item.get("level") or "").strip()
+            school_type = str(item.get("type") or "").strip()
+            tags = [value for value in [level, school_type] if value]
+            school_id = str(item.get("id") or "").strip()
+            normalized.append(
+                {
+                    "name": name,
+                    "province": province,
+                    "city": str(city.get("name") or "").strip(),
+                    "level": level,
+                    "type": school_type,
+                    "tags": tags,
+                    "officialUrl": "",
+                    "admissionUrl": "",
+                    "notes": f"院校代码：{school_id}" if school_id else "",
+                }
+            )
+        if not normalized:
+            raise ValueError("开源院校数据源没有可用记录，至少需要 name 和 province")
+        return {
+            "source": source_url,
+            "sourceType": "open-source-university-data",
+            "license": "MIT；基础院校名录，正式志愿填报仍需以省考试院和院校招生章程复核",
+            "syncedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "schools": normalized,
+        }
+
     if isinstance(payload, list):
         schools = payload
         meta: dict[str, Any] = {}
@@ -278,7 +338,7 @@ class Handler(BaseHTTPRequestHandler):
             schools = []
             for item in payload.get("schools") or []:
                 text = json.dumps(item, ensure_ascii=False).lower()
-                if province and item.get("province") != province:
+                if province and simplify_region_name(item.get("province")) != simplify_region_name(province):
                     continue
                 if keyword and keyword not in text:
                     continue
