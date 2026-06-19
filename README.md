@@ -83,11 +83,11 @@ python app\server.py
 
 ```text
 Name: SCHOOL_SOURCE_URL
-Value: 一个可公开访问或服务端可访问的 JSON 文件 URL
+Value: https://raw.githubusercontent.com/hugg95/university-data/master/data.json
 Environment: Production / Preview / Development
 ```
 
-保存后需要 Redeploy。配置成功后，`/api/schools` 会优先读取该 URL；如果远程数据源不可用，才回退到本地演示数据 `local-seed-demo`。
+保存后需要 Redeploy。配置成功后，`/api/schools` 会优先读取该 URL；如果远程数据源不可用，才回退到本地演示数据 `local-seed-demo`。这个示例数据源来自 MIT 开源项目 `hugg95/university-data`，适合作为基础院校名录，不包含投档线、招生计划、专业组、历年位次等正式报考数据。
 
 数组格式：
 

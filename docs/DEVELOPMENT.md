@@ -59,11 +59,11 @@ Vercel 环境变量配置：
 
 ```text
 Name: SCHOOL_SOURCE_URL
-Value: 一个可公开访问或服务端可访问的 JSON 文件 URL
+Value: https://raw.githubusercontent.com/hugg95/university-data/master/data.json
 Environment: Production / Preview / Development
 ```
 
-保存后 Redeploy。运行时 `/api/schools` 会优先读取该 URL；失败时回退到本地 seed。
+保存后 Redeploy。运行时 `/api/schools` 会优先读取该 URL；失败时回退到本地 seed。该示例 URL 是 MIT 开源基础院校名录，不能替代省考试院、院校招生章程、官方投档线或招生计划。
 
 ```json
 [
