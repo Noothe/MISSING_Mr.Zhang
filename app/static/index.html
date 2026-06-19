@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MISSING_Mr.Zhang 志愿投报顾问</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace">
+        <aside class="sidebar">
+          <div class="brand">
+            <div class="mark">张</div>
+            <div>
+              <h1>MISSING_Mr.Zhang</h1>
+              <p>非官方张雪峰风格志愿顾问</p>
+            </div>
+          </div>
+
+          <form id="profileForm" class="profile">
+            <label>
+              省份
+              <input name="province" placeholder="例如：河南" autocomplete="off" />
+            </label>
+            <label>
+              科类 / 选科
+              <input name="track" placeholder="物化生 / 历政地 / 理科" autocomplete="off" />
+            </label>
+            <div class="pair">
+              <label>
+                分数
+                <input name="score" type="number" placeholder="560" />
+              </label>
+              <label>
+                位次
+                <input name="rank" type="number" placeholder="32000" />
+              </label>
+            </div>
+            <label>
+              家庭预算与约束
+              <input name="budget" placeholder="普通家庭 / 可接受民办 / 不出省" autocomplete="off" />
+            </label>
+            <label>
+              城市与专业偏好
+              <input name="preference" placeholder="想去长三角，计算机优先" autocomplete="off" />
+            </label>
+          </form>
+
+          <div class="status" id="statusBox">
+            <span class="dot"></span>
+            <span>正在检查服务状态</span>
+          </div>
+        </aside>
+
+        <section class="chat">
+          <header class="notice">
+            <strong>决策边界</strong>
+            <span>所有建议必须回到省考试院、院校招生章程、官方投档线和授权数据源复核。</span>
+          </header>
+
+          <div id="messages" class="messages" aria-live="polite"></div>
+
+          <form id="chatForm" class="composer">
+            <textarea
+              id="messageInput"
+              rows="3"
+              placeholder="把考生情况说清楚：省份、选科、分数、位次、预算、城市偏好、专业禁忌。"
+            ></textarea>
+            <button type="submit">发送</button>
+          </form>
+        </section>
+
+        <aside class="dataPanel">
+          <div class="panelHeader">
+            <h2>院校库</h2>
+            <button id="syncButton" type="button">同步</button>
+          </div>
+          <div class="source" id="sourceInfo">等待加载</div>
+          <input id="schoolSearch" class="search" placeholder="搜索学校、省份、标签" />
+          <div id="schoolList" class="schoolList"></div>
+        </aside>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "source": "local-seed-demo",
+  "sourceType": "manual-demo",
+  "license": "演示数据，仅用于开发；生产环境必须替换为授权数据源或官方公开数据。",
+  "syncedAt": "2026-06-19T00:00:00Z",
+  "schools": [
+    {
+      "name": "郑州大学",
+      "province": "河南",
+      "city": "郑州",
+      "level": "211 / 双一流",
+      "type": "综合",
+      "tags": ["省内龙头", "综合平台", "医学与工科可关注"],
+      "officialUrl": "https://www.zzu.edu.cn/",
+      "admissionUrl": "https://ao.zzu.edu.cn/",
+      "notes": "示例记录，正式投报必须核验当年招生章程和省考试院数据。"
+    },
+    {
+      "name": "河南大学",
+      "province": "河南",
+      "city": "开封 / 郑州",
+      "level": "双一流",
+      "type": "综合",
+      "tags": ["师范底色", "文理综合", "省内认可"],
+      "officialUrl": "https://www.henu.edu.cn/",
+      "admissionUrl": "https://zs.henu.edu.cn/",
+      "notes": "示例记录，正式投报必须核验当年招生章程和省考试院数据。"
+    },
+    {
+      "name": "南京邮电大学",
+      "province": "江苏",
+      "city": "南京",
+      "level": "双一流",
+      "type": "理工",
+      "tags": ["通信", "电子信息", "长三角就业"],
+      "officialUrl": "https://www.njupt.edu.cn/",
+      "admissionUrl": "https://zs.njupt.edu.cn/",
+      "notes": "示例记录，正式投报必须核验当年招生章程和省考试院数据。"
+    },
+    {
+      "name": "杭州电子科技大学",
+      "province": "浙江",
+      "city": "杭州",
+      "level": "省重点",
+      "type": "理工",
+      "tags": ["电子信息", "计算机", "城市红利"],
+      "officialUrl": "https://www.hdu.edu.cn/",
+      "admissionUrl": "https://zhaosheng.hdu.edu.cn/",
+      "notes": "示例记录，正式投报必须核验当年招生章程和省考试院数据。"
+    }
+  ]
+}
