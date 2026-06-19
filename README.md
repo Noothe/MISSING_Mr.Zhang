@@ -45,6 +45,24 @@ python app\server.py
 Invoke-RestMethod http://127.0.0.1:8787/api/health
 ```
 
+## 部署到 Vercel
+
+本项目已包含 Vercel 配置：
+
+- `vercel.json`：指定 `python build_vercel.py` 为构建命令，输出目录为 `public`
+- `build_vercel.py`：把 `app/static/` 和 `assets/` 复制到 Vercel 静态输出目录
+- `api/`：Vercel Python Functions，提供 `/api/health`、`/api/schools`、`/api/chat`、`/api/sync/schools`
+
+在 Vercel 导入 GitHub 仓库时，保持默认 Framework Preset 即可；如果页面要求手动填写：
+
+```text
+Build Command: python build_vercel.py
+Output Directory: public
+Install Command: 留空
+```
+
+第一次部署后如果预览页显示 404，通常是因为 Vercel 没有找到根目录 `index.html` 或静态输出目录。当前配置会在构建时生成 `public/index.html`，用于修复这个问题。
+
 ## DeepSeek 配置
 
 可以在 PowerShell 会话中配置：

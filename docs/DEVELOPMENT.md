@@ -33,6 +33,24 @@ python app\server.py
 
 不要把 API Key、Server 酱 SendKey 或任何私密 token 提交到 Git。
 
+## Vercel 部署
+
+仓库已支持 Vercel Import：
+
+- `vercel.json` 将构建命令设为 `python build_vercel.py`
+- `build_vercel.py` 将 `app/static/` 和 `assets/` 输出到 `public/`
+- `api/*.py` 与 `api/sync/schools.py` 是 Vercel Python Functions
+
+Vercel UI 中可使用：
+
+```text
+Build Command: python build_vercel.py
+Output Directory: public
+Install Command: 留空
+```
+
+如果 Vercel 预览显示 404，优先检查构建日志里是否成功生成 `public/index.html`。
+
 ## 院校库同步
 
 `POST /api/sync/schools` 只接受 `SCHOOL_SOURCE_URL` 指向的授权 JSON 数据源。支持两种格式：

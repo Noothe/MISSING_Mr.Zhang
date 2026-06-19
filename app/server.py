@@ -133,14 +133,17 @@ def fetch_authorized_school_source() -> dict[str, Any]:
         SCHOOL_SOURCE_URL,
         headers={
             "Accept": "application/json",
-            "User-Agent": "MISSING-Mr-Zhang/0.1 data-sync",
+            "User-Agent": "Nian-Zhang-Shi/0.1 data-sync",
         },
     )
     with urllib.request.urlopen(request, timeout=20) as response:
         charset = response.headers.get_content_charset() or "utf-8"
         payload = json.loads(response.read().decode(charset))
     normalized = normalize_school_payload(payload, SCHOOL_SOURCE_URL)
-    CACHE_DATA.write_text(json.dumps(normalized, ensure_ascii=False, indent=2), encoding="utf-8")
+    try:
+        CACHE_DATA.write_text(json.dumps(normalized, ensure_ascii=False, indent=2), encoding="utf-8")
+    except OSError:
+        pass
     return normalized
 
 

@@ -2,3 +2,5 @@ __pycache__/
 *.py[cod]
 .env
 app/data/schools.cache.json
+public/
+.vercel/
