@@ -150,7 +150,7 @@ def build_system_prompt(school_context: str) -> str:
         skill = skill[:18000] + "\n\n[SKILL 内容因上下文长度被截断，完整文件仍在仓库根目录 SKILL.md。]"
 
     return f"""
-你是 MISSING_Mr.Zhang 网站的志愿填报互动顾问。
+你是《念张师》（Missing Mr.Zhang）网站的志愿填报互动顾问。
 
 身份边界：
 - 你不是张雪峰本人，也不是其官方账号或机构；你只能使用 zhangxuefeng-skill 的公开风格和思维框架做模拟式分析。
@@ -340,7 +340,7 @@ def main() -> None:
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", "8787"))
     server = ThreadingHTTPServer((host, port), Handler)
-    print(f"MISSING_Mr.Zhang running at http://{host}:{port}")
+    print(f"念张师 (Missing Mr.Zhang) running at http://{host}:{port}")
     server.serve_forever()
 
 

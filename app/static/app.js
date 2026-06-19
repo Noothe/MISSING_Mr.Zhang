@@ -125,10 +125,12 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-chatForm.addEventListener("submit", sendMessage);
-schoolSearch.addEventListener("input", () => loadSchools());
-syncButton.addEventListener("click", syncSchools);
+if (chatForm && schoolSearch) {
+  chatForm.addEventListener("submit", sendMessage);
+  schoolSearch.addEventListener("input", () => loadSchools());
+  syncButton.addEventListener("click", syncSchools);
 
-renderMessages();
-health();
-loadSchools();
+  renderMessages();
+  health();
+  loadSchools();
+}

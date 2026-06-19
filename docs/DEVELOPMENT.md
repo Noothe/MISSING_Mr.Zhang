@@ -1,4 +1,4 @@
-# MISSING_Mr.Zhang 开发说明
+# 念张师（Missing Mr.Zhang）开发说明
 
 ## 项目边界
 
@@ -13,7 +13,13 @@ cd D:\念张师
 python app\server.py
 ```
 
-打开 `http://127.0.0.1:8787`。
+打开官网 `http://127.0.0.1:8787`。
+
+Agent 工作台位于二级页面：
+
+```text
+http://127.0.0.1:8787/agent.html
+```
 
 ## DeepSeek 配置
 

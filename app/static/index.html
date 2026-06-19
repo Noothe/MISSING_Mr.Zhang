@@ -3,85 +3,107 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MISSING_Mr.Zhang 志愿投报顾问</title>
+    <title>念张师 Missing Mr.Zhang 官网</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
-    <main class="shell">
-      <section class="workspace">
-        <aside class="sidebar">
-          <div class="brand">
-            <div class="mark">张</div>
-            <div>
-              <h1>MISSING_Mr.Zhang</h1>
-              <p>非官方张雪峰风格志愿顾问</p>
-            </div>
+  <body class="sitePage">
+    <header class="siteNav">
+      <a class="wordmark" href="/" aria-label="念张师 Missing Mr.Zhang 首页">
+        <span class="wordmarkIcon">张</span>
+        <span>念张师</span>
+      </a>
+      <nav>
+        <a href="#standard">标准</a>
+        <a href="#data">数据</a>
+        <a href="#credit">来源</a>
+        <a class="navAction" href="/agent.html">进入 Agent</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="heroOfficial">
+        <img class="heroMedia" src="/assets/hero.gif" alt="zhangxuefeng-skill 视觉动画" />
+        <div class="heroShade"></div>
+        <div class="heroCopy">
+          <p class="eyebrow">非官方志愿填报互动顾问</p>
+          <h1>念张师</h1>
+          <p class="heroLead">
+            Missing Mr.Zhang。基于 zhangxuefeng-skill 的表达框架，面向普通家庭考生，把分数、位次、城市、专业和就业风险放回同一张决策桌。
+          </p>
+          <div class="heroActions">
+            <a class="primaryLink" href="/agent.html">开始志愿诊断</a>
+            <a class="ghostLink" href="#standard">查看边界</a>
           </div>
+        </div>
+        <div class="heroSignal" aria-hidden="true">
+          <span>先问清楚</span>
+          <span>再查数据</span>
+          <span>最后给判断</span>
+        </div>
+      </section>
 
-          <form id="profileForm" class="profile">
-            <label>
-              省份
-              <input name="province" placeholder="例如：河南" autocomplete="off" />
-            </label>
-            <label>
-              科类 / 选科
-              <input name="track" placeholder="物化生 / 历政地 / 理科" autocomplete="off" />
-            </label>
-            <div class="pair">
-              <label>
-                分数
-                <input name="score" type="number" placeholder="560" />
-              </label>
-              <label>
-                位次
-                <input name="rank" type="number" placeholder="32000" />
-              </label>
-            </div>
-            <label>
-              家庭预算与约束
-              <input name="budget" placeholder="普通家庭 / 可接受民办 / 不出省" autocomplete="off" />
-            </label>
-            <label>
-              城市与专业偏好
-              <input name="preference" placeholder="想去长三角，计算机优先" autocomplete="off" />
-            </label>
-          </form>
+      <section id="standard" class="sectionBand">
+        <div class="sectionIntro">
+          <p class="eyebrow">Design Standard</p>
+          <h2>不是聊天玩具，是高风险决策界面</h2>
+        </div>
+        <div class="principleGrid">
+          <article>
+            <span>01</span>
+            <h3>信息先行</h3>
+            <p>省份、选科、分数、位次、预算、城市偏好和专业禁忌缺一项，就不直接下结论。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>数据留痕</h3>
+            <p>每次回答都显示院校库来源和同步时间，不把演示数据包装成权威数据库。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>人工复核</h3>
+            <p>最终方案必须回到省考试院、院校招生章程、官方投档线和人工顾问复核。</p>
+          </article>
+        </div>
+      </section>
 
-          <div class="status" id="statusBox">
-            <span class="dot"></span>
-            <span>正在检查服务状态</span>
+      <section id="data" class="proofSection">
+        <div>
+          <p class="eyebrow">Data Discipline</p>
+          <h2>院校库只接授权数据源</h2>
+          <p>
+            当前项目提供授权 JSON 适配器和本地演示数据。生产环境应接入正式 API、授权数据文件或官方公开数据，不抓取商业站点页面来冒充实时权威库。
+          </p>
+        </div>
+        <dl class="metricList">
+          <div>
+            <dt>DeepSeek</dt>
+            <dd>OpenAI-compatible API</dd>
           </div>
-        </aside>
-
-        <section class="chat">
-          <header class="notice">
-            <strong>决策边界</strong>
-            <span>所有建议必须回到省考试院、院校招生章程、官方投档线和授权数据源复核。</span>
-          </header>
-
-          <div id="messages" class="messages" aria-live="polite"></div>
-
-          <form id="chatForm" class="composer">
-            <textarea
-              id="messageInput"
-              rows="3"
-              placeholder="把考生情况说清楚：省份、选科、分数、位次、预算、城市偏好、专业禁忌。"
-            ></textarea>
-            <button type="submit">发送</button>
-          </form>
-        </section>
-
-        <aside class="dataPanel">
-          <div class="panelHeader">
-            <h2>院校库</h2>
-            <button id="syncButton" type="button">同步</button>
+          <div>
+            <dt>School DB</dt>
+            <dd>Authorized JSON adapter</dd>
           </div>
-          <div class="source" id="sourceInfo">等待加载</div>
-          <input id="schoolSearch" class="search" placeholder="搜索学校、省份、标签" />
-          <div id="schoolList" class="schoolList"></div>
-        </aside>
+          <div>
+            <dt>Runtime</dt>
+            <dd>Python standard library</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="credit" class="creditBand">
+        <div>
+          <p class="eyebrow">Attribution</p>
+          <h2>尊重 skill 开发者</h2>
+          <p>
+            本项目分支自
+            <a href="https://github.com/alchaincyf/zhangxuefeng-skill">alchaincyf/zhangxuefeng-skill</a>，
+            保留 MIT License 和原始资料目录。页面视觉参考
+            <a href="https://github.com/alchaincyf/huashu-design">alchaincyf/huashu-design</a>
+            的真实资产优先、克制表达和作品级交付原则。
+          </p>
+        </div>
+        <a class="primaryLink compact" href="/agent.html">进入二级 Agent 页面</a>
       </section>
     </main>
-    <script src="/app.js"></script>
   </body>
 </html>
